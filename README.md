@@ -28,4 +28,8 @@ To design a button press counter using an Arduino UNO, I2C LCD display, and an L
 1. Arduino UNO – Microcontroller for processing inputs and outputs.
 2. C++ (Arduino IDE) – Programming language for coding the microcontroller.
 3. LiquidCrystal_I2C Library – For interfacing the I2C LCD display.
-4. Digital Input/Output – Button and LED control using Arduino’s GPIO pins.   
+4. Digital Input/Output – Button and LED control using Arduino’s GPIO pins.
+
+### **SIMULATION OUTPUT**
+
+![Image](https://github.com/user-attachments/assets/d953f885-8c87-4098-9e11-cfab012adb05)
