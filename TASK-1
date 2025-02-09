@@ -1,0 +1,38 @@
+#include <Wire.h>                  // Include Wire library for I2C communication
+#include <LiquidCrystal_I2C.h>      // Include library for I2C LCD display
+
+const int buttonPin = 2;            // Define button input pin
+int buttonState = 1;                // Store current button state (default HIGH due to pull-up)
+int lastButtonState = 1;            // Store previous button state
+int counter = 0;                    // Variable to count button presses
+
+// Initialize LCD with I2C address 0x27 (16 columns, 2 rows)
+LiquidCrystal_I2C lcd(0x27, 16, 2); 
+
+void setup() {
+    pinMode(buttonPin, INPUT_PULLUP);  // Set button pin as input with internal pull-up resistor
+    
+    lcd.begin(16, 2);      // Initialize LCD display
+    lcd.backlight();       // Turn on LCD backlight
+    lcd.setCursor(0, 0);   // Set cursor to first row, first column
+    lcd.print("Push Count: 0");  // Display initial count on LCD
+}
+
+void loop() {
+    buttonState = digitalRead(buttonPin);  // Read the current state of the button
+
+    // Check if the button is pressed (LOW) and was previously released (HIGH)
+    if (buttonState == LOW && lastButtonState == HIGH) {  
+        delay(10); 
+        if (digitalRead(buttonPin) == LOW) { 
+            counter++;  // Increment the counter
+
+            lcd.clear();  // Clear previous display
+            lcd.setCursor(0, 0);  // Set cursor position
+            lcd.print("Push Count: ");  // Display updated message
+            lcd.print(counter);  // Show updated count
+        }
+    }
+
+    lastButtonState = buttonState;  // Update last button state for next loop iteration
+}
